@@ -1,10 +1,3 @@
-"""
-ATES Configuration - COMPLETE FINAL V9 (INTEGRATED)
-All settings for detection, speed, calibration, dashboard
-Every parameter optimized for RTX 3050 + 4K video
-Compatible with main_integrated.py
-"""
-
 from pathlib import Path
 
 
