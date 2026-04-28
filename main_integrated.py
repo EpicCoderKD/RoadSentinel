@@ -1,21 +1,3 @@
-"""
-╔════════════════════════════════════════════════════════════════════════════╗
-║                                                                            ║
-║         ATES PHASE-1 FINAL SYSTEM - COMPLETE INTEGRATED V2                ║
-║                                                                            ║
-║  ✓ Vehicle Detection + Tracking (CPU compatible)                          ║
-║  ✓ Smart Calibration (auto + manual)                                      ║
-║  ✓ License Plate Reading (universal reader with voting)                   ║
-║  ✓ Speed Calculation (Kalman + ensemble)                                  ║
-║  ✓ Dashboard UI (4K-aware, real-time)                                     ║
-║  ✓ CSV Export (complete with plate voting)                                ║
-║  ✓ Traffic Analysis (flow, density, violations)                           ║
-║  ✓ NO gmc_method error                                                    ║
-║  ✓ NO CUDA error (auto CPU/GPU detection)                                 ║
-║                                                                            ║
-╚════════════════════════════════════════════════════════════════════════════╝
-"""
-
 import cv2
 import numpy as np
 import json
@@ -266,13 +248,6 @@ class SpeedEstimator:
 # ════════════════════════════════════════════════════════════════════════════
 
 class VehicleDetector:
-    """
-    Vehicle detector with STABLE tracking
-    - IoU + centroid matching
-    - Large match distance
-    - Strict counting (only count once, long tracks)
-    """
-
     def __init__(self, model_path=None, config=None):
         self.config = config or ATESConfig()
         model_path = model_path or self.config.MODEL_PATH
@@ -323,10 +298,6 @@ class VehicleDetector:
     # ─────────────────────────────────────────────────────────────────────
 
     def _iou(self, boxA, boxB):
-        """
-        Calculate IoU between two boxes
-        boxA, boxB = (x1, y1, x2, y2)
-        """
         xA = max(boxA[0], boxB[0])
         yA = max(boxA[1], boxB[1])
         xB = min(boxA[2], boxB[2])
@@ -350,13 +321,6 @@ class VehicleDetector:
     # ─────────────────────────────────────────────────────────────────────
 
     def _match_detections(self, raw_detections):
-        """
-        Match detections to existing tracks using:
-        1. IoU (primary - most stable)
-        2. Centroid distance (fallback)
-
-        Returns list of detections with assigned track_ids
-        """
         if not raw_detections:
             return []
 
@@ -476,12 +440,6 @@ class VehicleDetector:
         return total
 
     def _should_count_vehicle(self, track_id):
-        """
-        STRICT counting:
-        1. Never counted before
-        2. Tracked for MIN_FRAMES_COUNT frames
-        3. Moved at least MIN_DIST_COUNT pixels
-        """
         if track_id in self.counted_ids:
             return False
 
@@ -504,9 +462,6 @@ class VehicleDetector:
     # ─────────────────────────────────────────────────────────────────────
 
     def detect_and_track(self, frame):
-        """
-        Detect vehicles and track with stable IDs
-        """
         self.current_frame += 1
         self._update_markers()
 
