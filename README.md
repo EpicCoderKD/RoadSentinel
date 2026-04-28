@@ -7,7 +7,7 @@ RoadSentinel is a modular, real-time traffic enforcement framework built entirel
 This repository accompanies the research paper:
 
 > *"RoadSentinel: Real-Time Automated Traffic Enforcement Using Computer Vision"*  
-> Suhani Brahmbhatt · Kathan Desai · Drashvi Thoriya · Parth Goswami  
+> Kathan Desai · Suhani Brahmbhatt · Drashvi Thoriya · Parth Goswami  
 > Prasun Chandra Tripathi · Ravi Bhandari  
 > **IITRAM, Ahmedabad, India**
 
